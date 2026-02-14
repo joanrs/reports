@@ -1,3 +1,4 @@
+# Return of Investment 2025
 | Ticker   | Nombre                        | MktCap/AUM | Lista        | Q1      | Q2      | Q3      | Q4      | Anual   |
 | -------- | ----------------------------- | ---------- | ------------ | ------- | ------- | ------- | ------- | ------- |
 | SNDK     | Sandisk Corporation           | $73.47B    | Almacen.     | 35.80%  | -4.63%  | 145.51% | 109.96% | 577.07% |
