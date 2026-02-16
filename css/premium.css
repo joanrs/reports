@@ -32,7 +32,7 @@ body {
     backdrop-filter: blur(12px) saturate(180%);
     -webkit-backdrop-filter: blur(12px) saturate(180%);
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    padding: 0.75rem 0;
+    padding: 0.5rem 0;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -80,16 +80,19 @@ body {
 }
 
 /* Content Area as Card */
-.col-md-9[role="main"] {
+.col-md-9[role="main"],
+.col-md-12[role="main"] {
     background: white;
-    padding: 40px 50px !important;
+    padding: 30px 40px !important;
     border-radius: 16px;
     box-shadow: var(--card-shadow);
     margin-bottom: 40px;
     border: 1px solid rgba(0, 0, 0, 0.05);
+    margin-top: 10px;
 }
 
-[data-bs-theme="dark"] .col-md-9[role="main"] {
+[data-bs-theme="dark"] .col-md-9[role="main"],
+[data-bs-theme="dark"] .col-md-12[role="main"] {
     background: #1e293b;
     border-color: rgba(255, 255, 255, 0.05);
 }
@@ -99,7 +102,11 @@ h2,
 h3 {
     color: var(--primary-color);
     letter-spacing: -0.025em;
-    margin-top: 1.5rem;
+    margin-top: 1rem;
+}
+
+h1:first-child {
+    margin-top: 0;
 }
 
 h1 {

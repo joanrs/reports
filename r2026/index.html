@@ -65,63 +65,28 @@
                             class="nav-link ">Software Tools</a>
                     </li>
                 </ul>
-                </ul>
             </div>
         </div>
     </nav>
 
-    <div class="container">
+    <div class="container pb-5">
         <div class="row">
-            <div class="col-md-3">
+            
+            
+            <div class="col-md-12" role="main">
+            
                 
-<div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
-    <div class="card bg-body-tertiary">
-        <div class="card-header">ROI 2026 - Meses</div>
-        <div class="list-group list-group-flush">
-            <a href="javascript:void(0)" onclick="cargarMes('enero', this)"
-                class="list-group-item list-group-item-action active" data-mes="enero">Enero</a>
-            <a href="javascript:void(0)" onclick="cargarMes('febrero', this)"
-                class="list-group-item list-group-item-action" data-mes="febrero">Febrero</a>
-            <a href="javascript:void(0)" onclick="cargarMes('marzo', this)"
-                class="list-group-item list-group-item-action" data-mes="marzo">Marzo</a>
-            <a href="javascript:void(0)" onclick="cargarMes('abril', this)"
-                class="list-group-item list-group-item-action" data-mes="abril">Abril</a>
-            <a href="javascript:void(0)" onclick="cargarMes('mayo', this)"
-                class="list-group-item list-group-item-action" data-mes="mayo">Mayo</a>
-            <a href="javascript:void(0)" onclick="cargarMes('junio', this)"
-                class="list-group-item list-group-item-action" data-mes="junio">Junio</a>
-            <a href="javascript:void(0)" onclick="cargarMes('julio', this)"
-                class="list-group-item list-group-item-action" data-mes="julio">Julio</a>
-            <a href="javascript:void(0)" onclick="cargarMes('agosto', this)"
-                class="list-group-item list-group-item-action" data-mes="agosto">Agosto</a>
-            <a href="javascript:void(0)" onclick="cargarMes('septiembre', this)"
-                class="list-group-item list-group-item-action" data-mes="septiembre">Septiembre</a>
-            <a href="javascript:void(0)" onclick="cargarMes('octubre', this)"
-                class="list-group-item list-group-item-action" data-mes="octubre">Octubre</a>
-            <a href="javascript:void(0)" onclick="cargarMes('noviembre', this)"
-                class="list-group-item list-group-item-action" data-mes="noviembre">Noviembre</a>
-            <a href="javascript:void(0)" onclick="cargarMes('diciembre', this)"
-                class="list-group-item list-group-item-action" data-mes="diciembre">Diciembre</a>
-            <hr class="my-2">
-            <a href="../." class="list-group-item list-group-item-action">Volver al Inicio</a>
-        </div>
-    </div>
-</div>
-
-            </div>
-            <div class="col-md-9" role="main">
-                
-<h1 id="titulo-reporte" class="mb-4 text-center">Revalorización Enero 2026</h1>
+<h1 id="titulo-reporte" class="mb-4 text-center">ROI 2026</h1>
 
 <div id="report-container"></div>
 
-            </div>
         </div>
+    </div>
     </div>
 
     <footer class="col-md-12 text-center my-4">
         <hr>
-        <p>Tablas generadas con <a href="http://market-analyze.vercel.app">market-analyze</a>.</p>
+        <p>Tablas generadas con <a href="http://market-analyze.vercel.app">Market Analyze</a>.</p>
     </footer>
 
     <!-- Scripts -->
@@ -136,30 +101,6 @@
 
     
 <script>
-    // Mapeo de nombres de meses
-    const mesesNombres = {
-        'enero': 'Enero',
-        'febrero': 'Febrero',
-        'marzo': 'Marzo',
-        'abril': 'Abril',
-        'mayo': 'Mayo',
-        'junio': 'Junio',
-        'julio': 'Julio',
-        'agosto': 'Agosto',
-        'septiembre': 'Septiembre',
-        'octubre': 'Octubre',
-        'noviembre': 'Noviembre',
-        'diciembre': 'Diciembre'
-    };
-
-    function cargarMes(mes, element) {
-        const mesCapitalizado = mesesNombres[mes] || mes;
-        const archivo = `tabla_${mes}.html`;
-        const titulo = `Revalorización ${mesCapitalizado} 2026`;
-
-        cargarReporte(archivo, titulo, element);
-    }
-
     function cargarReporte(url, titulo, element) {
         const container = document.getElementById('report-container');
         const titleElement = document.getElementById('titulo-reporte');
@@ -167,24 +108,13 @@
         titleElement.innerText = 'Cargando ' + titulo + '...';
 
         fetch(url)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`No se encontró el archivo: ${url}`);
-                }
-                return response.text();
-            })
+            .then(response => response.text())
             .then(html => {
                 container.innerHTML = html;
                 titleElement.innerText = titulo;
             })
             .catch(error => {
-                container.innerHTML = '<div class="alert alert-warning" role="alert">' +
-                    '<h4 class="alert-heading">Reporte no disponible</h4>' +
-                    '<p>El reporte para este mes aún no está disponible.</p>' +
-                    '<hr>' +
-                    '<p class="mb-0">Por favor, selecciona otro mes del menú lateral.</p>' +
-                    '</div>';
-                titleElement.innerText = titulo;
+                container.innerHTML = '<p class="text-danger">Error al cargar el reporte.</p>';
                 console.error('Error:', error);
             });
 
@@ -197,9 +127,9 @@
         }
     }
 
-    // Cargar tabla inicial (Enero por defecto)
+    // Cargar tabla inicial
     document.addEventListener('DOMContentLoaded', function () {
-        cargarMes('enero');
+        cargarReporte('tabla_enero.html', 'Revalorización Enero 2026');
     });
 </script>
 
